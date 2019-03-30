@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -25,10 +26,15 @@ namespace AppHHelpers.Models
 
         [EmailAddress]
         public string Email { get; set; }
+
+        [DisplayName("Genero")]
         public Nullable<int> GeneroId { get; set; }
+
+        [DisplayName("Estado Civil")]
         public string EstadoCivil { get; set; }
         public string Hobbies { get; set; }
 
+        [DisplayName("Genero")]
         public virtual Genero Genero { get; set; }
 
 

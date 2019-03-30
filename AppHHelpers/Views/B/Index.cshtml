@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bienvenidos</h2>
+
+
+@using (Html.BeginForm("Go", "B", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" class="btn btn-primary" value="Ir al formulario"/>
+}
