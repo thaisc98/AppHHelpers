@@ -74,16 +74,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EstadoCivil, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EstadoCivil, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EstadoCivil, "", new { @class = "text-danger" })
+              @Html.RadioButtonFor(model => model.EstadoCivil,"Casado") Casado
+              @Html.RadioButtonFor(model => model.EstadoCivil,"Soltero") Soltero
+              @Html.RadioButtonFor(model => model.EstadoCivil,"Viudo") Viudo
+              @Html.RadioButtonFor(model => model.EstadoCivil,"Union Libre") Union Libre
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Hobbies, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Hobbies, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hobbies, "", new { @class = "text-danger" })
+                @{
+                    List<string> hobbi = ViewBag.Hobbies;
+                     foreach (var h in hobbi)
+                     {
+                         <input type="checkbox" name="Hobby" value="@h"/> @h
+                     }
+                }
             </div>
         </div>
 

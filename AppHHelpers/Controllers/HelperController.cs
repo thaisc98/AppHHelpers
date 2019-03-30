@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AppHHelpers.Models;
@@ -14,19 +15,22 @@ namespace AppHHelpers.Controllers
         public HelperController()
         {
             db = new HtmlHelpDbEntities();
+
         }
 
         // GET: Helper
         public ActionResult Index()
         {
-            return View();
+            return View(db.Persona.ToList());
         }
 
 
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.GeneroId = new SelectList(db.Genero.ToList(),"Id", "Descripcion");
+
+
+            ViewBag.GeneroId = new SelectList(db.Genero.ToList(), "Id", "Descripcion");
 
             List<string> list = new List<string>();
             
@@ -39,6 +43,22 @@ namespace AppHHelpers.Controllers
             ViewBag.Hobbies = list;
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Create(Persona p, FormCollection c)
+        {
+            if (ModelState.IsValid)
+            {
+                var x = c["Hobby"];
+                p.Hobbies = x;
+                db.Persona.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Helper");
+            }
+
+            return View();
+        }
+
 
         
 
